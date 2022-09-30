@@ -3,12 +3,12 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const menuHumIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuCartIcon = document.querySelector('.navbar-shopping-cart');
-const productDatail = document.querySelector('.product-detail');
+const productDatail = document.querySelector('#shoppingCartContainer');
 const cardsContainer =document.querySelector('.cards-container');
 
 
 dropmenu.addEventListener('click', toggDesktopMenu);
-menuHumIcon.addEventListener('click', toggMobileMenu )
+menuHumIcon.addEventListener('click', toggMobileMenu )   
 menuCartIcon.addEventListener('click', toggCartIcon )
 
 function toggDesktopMenu(){
