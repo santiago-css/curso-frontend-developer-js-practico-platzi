@@ -3,45 +3,58 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const menuHumIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuCartIcon = document.querySelector('.navbar-shopping-cart');
-const productDatail = document.querySelector('#shoppingCartContainer');
-const cardsContainer =document.querySelector('.cards-container');
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const prodtuctDetailContainer = document.querySelector('#productDetail');
+const cardsContainer = document.querySelector('.cards-container');
+const buttonProductClose = document.querySelector('.product-detail-close');
 
 
 dropmenu.addEventListener('click', toggDesktopMenu);
 menuHumIcon.addEventListener('click', toggMobileMenu )   
 menuCartIcon.addEventListener('click', toggCartIcon )
+buttonProductClose.addEventListener('click', closeProductDetail);
 
 function toggDesktopMenu(){
-    const isProducDetailClosed = productDatail.classList.contains('inactive');
+    const isProducDetailClosed = shoppingCartContainer.classList.contains('inactive');
 
     if (!isProducDetailClosed) {
-        productDatail.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
     desktopMenu.classList.toggle('inactive');
 }
 function toggMobileMenu(){
-    const isProducDetailClosed = productDatail.classList.contains('inactive');
+    const isProducDetailClosed = shoppingCartContainer.classList.contains('inactive');
 
     if (!isProducDetailClosed) {
-        productDatail.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
     mobileMenu.classList.toggle('inactive');
+    closeProductDetail();
 }
 function toggCartIcon(){
     const isMobileClosed = mobileMenu.classList.contains('inactive');
     const isDesktopMuneClosed = desktopMenu.classList.contains('inactive');
+    const isProductDetailClosed = prodtuctDetailContainer.classList.contains('inactive');
 
     if (!isDesktopMuneClosed) {
         desktopMenu.classList.add('inactive');
     }
-
     if (!isMobileClosed) {
         mobileMenu.classList.add('inactive');
     }
+    if (!isProductDetailClosed) {
+        prodtuctDetailContainer.classList.add('inactive');
+    }
 
-    productDatail.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');
 }
-
+function openProductDetail (){
+    shoppingCartContainer.classList.add('inactive')
+    prodtuctDetailContainer.classList.remove('inactive');
+}
+function closeProductDetail(){
+    prodtuctDetailContainer.classList.add('inactive');
+}
 const productList = [];
 productList.push({
     name: 'bike',
@@ -80,6 +93,7 @@ function renderProducts(arr){
     
         const productImage = document.createElement('img');
         productImage.setAttribute('src', product.image);
+        productImage.addEventListener('click', openProductDetail);
     
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
